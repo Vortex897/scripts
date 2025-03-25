@@ -1,0 +1,20 @@
+let clickerInterval; // Variável para armazenar o intervalo
+
+function autoClicker() {
+    if (clickerInterval) return; // Evita múltiplas execuções simultâneas
+    clickerInterval = setInterval(() => {
+        let cookie = document.getElementById("bigCookie");
+        if (cookie) {
+            let event = new MouseEvent("click", { bubbles: true, cancelable: true, view: window });
+            cookie.dispatchEvent(event);
+        }
+    }, 1); // Clica a cada 1ms
+}
+
+function stopClicker() {
+    clearInterval(clickerInterval); // Para o intervalo
+    clickerInterval = null; // Reseta a variável
+}
+
+// Iniciar o autoclicker
+autoClicker();
