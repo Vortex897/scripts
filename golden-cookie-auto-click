@@ -1,0 +1,17 @@
+if (Notification.permission !== "granted") {
+    Notification.requestPermission();
+}
+
+setInterval(() => {
+    Game.shimmers.forEach(gc => {
+        if (gc.type === "golden" && !gc.notified) {
+            gc.notified = true;
+            new Notification("🍪 Cookie Dourado!", {
+                body: "Clique automático realizado!",
+                icon: "https://orteil.dashnet.org/cookieclicker/img/goldCookie.png"
+            });
+            gc.pop(); // clica automaticamente
+            console.log("🍪 Cookie dourado clicado!");
+        }
+    });
+}, 500);
